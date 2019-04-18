@@ -1,0 +1,7 @@
+#数据库表收集: python manage.py makemigrations
+#数据迁移: python manage.py migrate
+#创建开发模块: python manage.py startapp 模块名
+#创建django后台用户命令：python manage.py createsuperuser
+#启动项目:python manage.py runserver
+
+#至于offset，我们滚动几次鼠标滑轮，就会发现，offset 是以24为基础递增的，0,24,48,72,96.....滚动滑轮触发事件

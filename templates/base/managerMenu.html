@@ -1,0 +1,29 @@
+<div id="menu">
+ <ul class="top">
+  <li><a href="/user/toManager/"><i class="home"></i><em>管理首页</em></a></li>
+ </ul>
+{#    {% if request.session.type == "2" or request.session.type == "0"%}#}
+{#        <li><a href="/majorInfo/list/"><i class="productCat"></i><em>专业信息管理</em></a></li>#}
+{#    {% else %}#}
+{#    {% endif %}#}
+    <ul>
+        <li><i class="productCat"></i><em><a onclick="display1('clik1');">课题管理</a></em></li>
+            <ul id="clik1"  style="margin-left: 42px;display: none;">
+                <li><i class="product"></i><a href="/manager/isCheckList/">已审列表</a></li>
+                <li><i class="product"></i><a href="/manager/noCheckList/">未审列表</a></li>
+            </ul>
+
+
+        <li><i class="productCat"></i><em><a onclick="display2('clik2');">系统用户信息管理</a></em></li>
+            <ul id="clik2"  style="margin-left: 42px;display: none;">
+                <li><i class="product"></i><a href="/manager/tealist/">老师列表</a></li>
+                <li><i class="product"></i><a href="/manager/stulist/">学生列表</a></li>
+            </ul>
+
+        <li><i class="productCat"></i><em><a onclick="display3('clik3');">公告管理</a></em></li>
+            <ul id="clik3"  style="margin-left: 42px;display: none;">
+                <li><i class="product"></i><a href="/manager/toAddNotice/">添加公告</a></li>
+                <li><i class="product"></i><a href="/manager/noticeList/">公告列表</a></li>
+            </ul>
+    </ul>
+</div>

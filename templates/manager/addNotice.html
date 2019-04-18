@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+{#<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">#}
+<meta name="viewport" content="initial-scale=1, user-scalable=0, minimal-ui">
+{% include 'title.html' %}
+<meta name="Copyright" content="Douco Design." />
+<link href="/static/css/public.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="/static/js/jquery.min.js"></script>
+<script type="text/javascript" src="/static/js/global.js"></script>
+<link href="/static/libs/layer/skin/layer.css" rel="stylesheet">
+<script type="text/javascript" src="/static/js/jquery.autotextarea.js"></script>
+<script type="text/javascript" src="/static/js/index.js"></script>
+<script src="/static/libs/layer/layer.js"></script>
+<script type="text/javascript">
+</script>
+    {% include 'display.html' %}
+</head>
+<body>
+ <div id="dcHead">
+ <div id="head">
+    {% include 'logo.html' %}
+  <div class="nav">
+   <ul class="navRight">
+    {% include 'rightTop.html' %}
+    <li class="noRight"><a href="/">退出</a></li>
+   </ul>
+  </div>
+ </div>
+</div>
+<!-- dcHead 结束 --> <div id="dcLeft">
+        {% if request.session.type == "1"%}
+            {% include 'stuMenu.html' %}
+        {% elif request.session.type == "2"%}
+            {% include 'teaMenu.html' %}
+        {% else %}
+            {% include 'managerMenu.html' %}
+        {% endif %}
+
+</div>
+<div id="dcMain">
+   <!-- 当前位置 -->
+<div id="urHere">管理中心<b>></b><strong>公告管理</strong> </div>
+    <div class="mainBox" style="height:auto!important;height:550px;min-height:550px;">
+
+        <h3>新增公告</h3>
+    <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
+
+        <tr>
+            <td width="90" align="right">公告标题：</td>
+            <td>
+                <div name="goodsname"><input value="" type="text" name="name" id="1" size="80" class="inpMain"/></div>
+            </td>
+        </tr>
+
+        <tr>
+            <td width="90" align="right">内容：</td>
+            <td>
+                <div name="goodsname"><input value="" type="text" name="name" id="2" size="80" class="inpMain"/></div>
+            </td>
+        </tr>
+        <tr>
+            <td width="90" align="right">选课开始时间：</td>
+            <td>
+                <div name="goodsname"><input value="" type="date" name="name" id="3" size="80" class="inpMain"/></div>
+            </td>
+        </tr>
+        <tr>
+            <td width="110" align="right">选课结束时间：</td>
+            <td>
+                <div name="goodsname"><input value="" type="date" name="name" id="4" size="80" class="inpMain"/></div>
+            </td>
+        </tr>
+        <tr>
+            <td width="90" align="right"></td>
+            <td>
+                <div name="goodsname"><button id="submit_btn" style="    width: 60px;
+    height: 25px;
+    color: #2196F3;
+    font-size: 18px;">添加</button></div>
+            </td>
+        </tr>
+
+    </table>
+
+    </div>
+    <div class="clear"></div>
+    </div>
+ </div>
+ <div class="clear"></div>
+<div id="dcFooter">
+ <div id="footer">
+  <div class="line"></div>
+ </div>
+ </div><!-- dcFooter 结束 -->
+<div class="clear"></div> </div>
+</body>
+<script>
+    function getDate(date){
+        var dates = date.split("-");
+        var dateReturn = '';
+        for(var i=0; i<dates.length; i++){
+            dateReturn+=dates[i];
+        }
+        return dateReturn;
+    }
+    $(function(){
+        $('#submit_btn').click(function(e){
+            e.preventDefault();
+            if($("#1").val() == '' || $("#2").val() == ''|| $("#3").val() == ''|| $("#4").val() == ''){
+                layer.msg('填写完整!');
+                return;
+            }
+            if(getDate($("#4").val())-getDate($("#3").val())<0){
+            alert("结束时间不能小于开始时间！");
+            return false;
+        }
+            $.ajax({
+                url: '/manager/addNotice/',
+                type: 'GET',
+                dataType: 'json',
+                data: {
+                    "str1": $("#1").val(),
+                    "str2": $("#2").val(),
+                    "str3": $("#3").val(),
+                    "str4": $("#4").val(),
+                },
+                success: function(data){
+                    console.log(data);
+                    if(data.code == 0){
+                        alert("添加成功！");
+                        window.location = '/manager/noticeList/';
+                    }else{
+                        layer.msg('用户名或密码错误');
+                    }
+                },
+                error: function(xhr){
+                    console.log(xhr);
+                }
+            });
+        });
+    });
+</script>
+</html>

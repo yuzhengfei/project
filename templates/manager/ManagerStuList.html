@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+{#<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">#}
+<meta name="viewport" content="initial-scale=1, user-scalable=0, minimal-ui">
+{% include 'title.html' %}
+<meta name="Copyright" content="Douco Design." />
+<link href="/static/css/public.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="/static/js/jquery.min.js"></script>
+<script type="text/javascript" src="/static/js/global.js"></script>
+<link href="/static/libs/layer/skin/layer.css" rel="stylesheet">
+<script type="text/javascript" src="/static/js/jquery.autotextarea.js"></script>
+<script type="text/javascript" src="/static/js/index.js"></script>
+<script src="/static/libs/layer/layer.js"></script>
+<script type="text/javascript">
+</script>
+    {% include 'display.html' %}
+</head>
+<body>
+ <div id="dcHead">
+ <div id="head">
+    {% include 'logo.html' %}
+  <div class="nav">
+   <ul class="navRight">
+    {% include 'rightTop.html' %}
+    <li class="noRight"><a href="/">退出</a></li>
+   </ul>
+  </div>
+ </div>
+</div>
+<!-- dcHead 结束 --> <div id="dcLeft">
+        {% if request.session.type == "1"%}
+            {% include 'stuMenu.html' %}
+        {% elif request.session.type == "2"%}
+            {% include 'teaMenu.html' %}
+        {% else %}
+            {% include 'managerMenu.html' %}
+        {% endif %}
+
+</div>
+<div id="dcMain">
+   <!-- 当前位置 -->
+<div id="urHere">管理中心<b>></b><strong>系统用户管理</strong> </div>
+    <div class="mainBox" style="height:auto!important;height:550px;min-height:550px;">
+
+        <h3>学生列表</h3>
+    <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
+      <thead>
+        <tr>
+            <th width="22" align="center"></th>
+            <th width="40" align="center">学生账号</th>
+            <th align="center" width="40">登录密码</th>
+            <th width="40" align="center">学生姓名</th>
+            <th align="center" width="40">性别</th>
+            <th align="center" width="40">民族</th>
+            <th width="40" align="center">专业</th>
+            <th align="center" width="40">学号</th>
+            <th width="40" align="center">邮箱</th>
+            <th align="center" width="40">联系电话</th>
+            <th width="40" align="center">住址</th>
+            <th align="center" width="40">信息操作</th>
+        </tr>
+      </thead>
+      <tbody class="contain">
+        {% for item in list%}
+            <tr data-id="{{item.id}}">
+                <td align="center"><input name='chkall' type='checkbox' id='chkall' value='{{item.id}}'></td>
+                <td align="center">{{ item.username }}</td>
+                <td align="center">{{ item.password }}</td>
+                <td align="center">{{ item.name }}</td>
+                <td align="center">{{ item.sex }}</td>
+                <td align="center">{{ item.nation }}</td>
+                <td align="center">{{ item.pro }}</td>
+                <td align="center">{{ item.stuno }}</td>
+                <td align="center">{{ item.mailbox }}</td>
+                <td align="center">{{ item.tele }}</td>
+                <td align="center">{{ item.address }}</td>
+                <td align="center">
+                    <a href="javascript:void;" class="delete_stu">删除</a>
+                </td>
+            </tr>
+        {% endfor %}
+      </tbody>
+      </table>
+
+    </div>
+    <div class="clear"></div>
+    </div>
+ </div>
+ <div class="clear"></div>
+<div id="dcFooter">
+ <div id="footer">
+  <div class="line"></div>
+ </div>
+ </div><!-- dcFooter 结束 -->
+<div class="clear"></div> </div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<div id="menu">
+ <ul class="top">
+  <li><a href="/user/toManager/"><i class="home"></i><em>管理首页</em></a></li>
+ </ul>
+    <ul>
+    {% if request.session.isupdate == "1"%}
+        <li><i class="productCat"></i><em><a onclick="display1('clik1');">课题管理</a></em></li>
+        <ul id="clik1"  style="margin-left: 42px;display: none;">
+            <li><i class="product"></i><a href="/teacher/list/">课题列表</a></li>
+{#            显示老师审核通过后的课题#}
+            <li><i class="product"></i><a href="/student/myTopic/">我的课题</a></li>
+        </ul>
+
+        <li><i class="productCat"></i><em><a onclick="display2('clik2');">审核管理</a></em></li>
+            <ul id="clik2"  style="margin-left: 42px;display: none;">
+    {#            显示审核未通过和待审核的课题#}
+                <li><i class="product"></i><a href="/student/status/">审核状态</a></li>
+            </ul>
+
+        <li><i class="productCat"></i><em><a onclick="display4('clik4');">公告管理</a></em></li>
+            <ul id="clik4"  style="margin-left: 42px;display: none;">
+                <li><i class="product"></i><a href="/manager/noticeList/?tip=1">公告列表</a></li>
+            </ul>
+    {% else %}
+    {% endif %}
+
+    <li><i class="productCat"></i><em><a onclick="display3('clik3');">个人资料管理</a></em></li>
+        <ul id="clik3"  style="margin-left: 42px;display: none;">
+            <li><i class="product"></i><a href="/student/toUpdate/">资料详情</a></li>
+        </ul>
+
+    </ul>
+</div>

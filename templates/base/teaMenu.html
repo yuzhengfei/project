@@ -1,0 +1,42 @@
+<div id="menu">
+ <ul class="top">
+  <li><a href="/user/toManager/"><i class="home"></i><em>管理首页</em></a></li>
+ </ul>
+    <ul>
+    {% if request.session.isupdate == "1"%}
+{#        # 申报管理显示待审核和未通过#}
+{#         # 课题列表显示通过的#}
+        <li><i class="productCat"></i><em><a onclick="display1('clik1');">课题管理</a></em></li>
+            <ul id="clik1"  style="margin-left: 42px;display: none;">
+                <li><i class="product"></i><a href="/teacher/toadd/">添加课题</a></li>
+    {#            显示通过审核的#}
+                <li><i class="product"></i><a href="/teacher/list/?tip=1">我的课题</a></li>
+            </ul>
+
+        <li><i class="productCat"></i><em><a onclick="display2('clik2');">申报管理</a></em></li>
+            <ul id="clik2"  style="margin-left: 42px;display: none;">
+    {#            显示待审核和未通过的#}
+                <li><i class="product"></i><a href="/teacher/list/?tip=2">审核结果</a></li>
+            </ul>
+
+        <li><i class="productCat"></i><em><a onclick="display3('clik3');">学生选题管理</a></em></li>
+            <ul id="clik3"  style="margin-left: 42px;display: none;">
+    {#            显示待审核学生数据来源result表#}
+                <li><i class="product"></i><a href="/teacher/noCheck/">未审学生</a></li>
+    {#            显示审核通过和未通过学生#}
+                <li><i class="product"></i><a href="/teacher/check/">已审学生</a></li>
+            </ul>
+
+        <li><i class="productCat"></i><em><a onclick="display4('clik5');">公告管理</a></em></li>
+            <ul id="clik5"  style="margin-left: 42px;display: none;">
+                <li><i class="product"></i><a href="/manager/noticeList/">公告列表</a></li>
+            </ul>
+    {% else %}
+    {% endif %}
+
+    <li><i class="productCat"></i><em><a onclick="display4('clik4');">个人资料管理</a></em></li>
+        <ul id="clik4"  style="margin-left: 42px;display: none;">
+            <li><i class="product"></i><a href="/teacher/toUpdate/">资料详情</a></li>
+        </ul>
+    </ul>
+</div>
